@@ -1,6 +1,6 @@
 .npmrc
 npm-debug.log
 node_modules
-dist
+#dist
 es
 .idea/
