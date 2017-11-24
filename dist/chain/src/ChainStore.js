@@ -58,6 +58,8 @@ var account_transaction_history_prefix = "2." + parseInt(impl_object_type.accoun
 var asset_dynamic_data_prefix = "2." + parseInt(impl_object_type.asset_dynamic_data, 10) + ".";
 var bitasset_data_prefix = "2." + parseInt(impl_object_type.asset_bitasset_data, 10) + ".";
 var block_summary_prefix = "2." + parseInt(impl_object_type.block_summary, 10) + ".";
+var lock_balance_prefix = "2." + parseInt(impl_object_type.lock_balance, 10) + ".";
+var asset_lock_data_prefix = "2." + parseInt(impl_object_type.asset_lock_data, 10) + ".";
 
 // let vesting_balance_prefix = "1." + vesting_balance_type + ".";
 var witness_prefix = "1." + witness_object_type + ".";
@@ -889,9 +891,11 @@ var ChainStore = function () {
                 account.lifetime_referrer_name = lifetime_referrer_name;
                 account.registrar_name = registrar_name;
                 account.balances = {};
+                account.fix_balances = {};
                 account.orders = new _immutable2.default.Set();
                 account.vesting_balances = new _immutable2.default.Set();
                 account.balances = new _immutable2.default.Map();
+                account.fix_balances = new _immutable2.default.Map();
                 account.call_orders = new _immutable2.default.Set();
                 account.proposals = new _immutable2.default.Set();
                 account.vesting_balances = account.vesting_balances.withMutations(function (set) {
@@ -912,6 +916,12 @@ var ChainStore = function () {
                         _this10._updateObject(b);
                         map.set(b.asset_type, b.id);
                         sub_to_objects.push(b.id);
+                    });
+                });
+                account.fix_balances = account.balances.withMutations(function (map) {
+                    full_account.balances.forEach(function (b) {
+                        map.set(b.asset_type, full_account.balances.lockeds);
+                        //sub_to_objects.push(b.id);
                     });
                 });
                 account.orders = account.orders.withMutations(function (set) {
@@ -937,7 +947,7 @@ var ChainStore = function () {
                     });
                 });
 
-                if (sub_to_objects.length) _bitsharesjsWs.Apis.instance().db_api().exec("get_objects", [sub_to_objects]);
+                //if (sub_to_objects.length) Apis.instance().db_api().exec("get_objects", [sub_to_objects]);
 
                 _this10._updateObject(statistics);
                 var updated_account = _this10._updateObject(account);
@@ -1231,6 +1241,23 @@ var ChainStore = function () {
                 owner = owner.setIn(["balances", object.asset_type], object.id);
             }
             this.objects_by_id.set(object.owner, owner);
+        } else if (object.id.substring(0, lock_balance_prefix.length) == lock_balance_prefix) {
+            var _owner = this.objects_by_id.get(object.owner);
+            if (_owner === undefined || _owner === null) {
+                return;
+                /*  This prevents the full account from being looked up later
+                 owner = {id:object.owner, balances:{ } }
+                 owner.balances[object.asset_type] = object.id
+                 owner = Immutable.fromJS( owner )
+                 */
+            } else {
+                var fix_balances = _owner.get("fix_balances");
+                if (!fix_balances) {
+                    _owner = _owner.set("fix_balances", _immutable2.default.Map());
+                    _owner = _owner.setIn(["fix_balances", object.asset_id], object.id);
+                }
+                this.objects_by_id.set(object.owner, _owner);
+            }
         } else if (object.id.substring(0, account_stats_prefix.length) == account_stats_prefix) {
             // ACCOUNT STATS OBJECT
             try {
