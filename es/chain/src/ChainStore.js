@@ -899,7 +899,7 @@ var ChainStore = function () {
                 account.fix_balances = account.fix_balances.withMutations(function (map) {
                     full_account.balances.forEach(function (b) {
                         map.set(b.asset_type, b.lockeds);
-                        //sub_to_objects.push(b.id);
+                        sub_to_objects.push(b.id);
                     });
                 });
                 account.orders = account.orders.withMutations(function (set) {
@@ -925,7 +925,11 @@ var ChainStore = function () {
                     });
                 });
 
-                //if (sub_to_objects.length) Apis.instance().db_api().exec("get_objects", [sub_to_objects]);
+                if (sub_to_objects.length) Apis.instance().db_api().exec("get_objects", [sub_to_objects]).then(function (results) {
+                    results.forEach(function (result) {
+                        _this10.objects_by_id.set(result.get("id"), result);
+                    });
+                });
 
                 _this10._updateObject(statistics);
                 var updated_account = _this10._updateObject(account);
