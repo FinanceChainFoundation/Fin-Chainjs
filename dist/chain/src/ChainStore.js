@@ -882,7 +882,8 @@ var ChainStore = function () {
                     registrar_name = full_account.registrar_name,
                     lifetime_referrer_name = full_account.lifetime_referrer_name,
                     votes = full_account.votes,
-                    proposals = full_account.proposals;
+                    proposals = full_account.proposals,
+                    fix_balances = full_account.fix_balances;
 
 
                 _this10.accounts_by_name.set(account.name, account.id);
@@ -891,7 +892,7 @@ var ChainStore = function () {
                 account.lifetime_referrer_name = lifetime_referrer_name;
                 account.registrar_name = registrar_name;
                 account.balances = {};
-                account.fix_balances = {};
+                account.fix_balances = _immutable2.default.fromJS(full_account.fix_balances);
                 account.orders = new _immutable2.default.Set();
                 account.vesting_balances = new _immutable2.default.Set();
                 account.balances = new _immutable2.default.Map();
@@ -918,12 +919,13 @@ var ChainStore = function () {
                         sub_to_objects.push(b.id);
                     });
                 });
-                account.fix_balances = account.fix_balances.withMutations(function (map) {
-                    full_account.balances.forEach(function (b) {
-                        map.set(b.asset_type, b.lockeds);
-                        sub_to_objects.push(b.id);
+
+                for (var id in full_account.fix_balances) {
+                    full_account.fix_balances[id].forEach(function (fix_balance) {
+                        _this10._updateObject(fix_balance);
                     });
-                });
+                }
+
                 account.orders = account.orders.withMutations(function (set) {
                     limit_orders.forEach(function (order) {
                         _this10._updateObject(order);
@@ -947,12 +949,12 @@ var ChainStore = function () {
                     });
                 });
 
-                if (sub_to_objects.length) _bitsharesjsWs.Apis.instance().db_api().exec("get_objects", [sub_to_objects]).then(function (results) {
-                    results.forEach(function (result) {
-                        _this10.objects_by_id.set(result["id"], result);
+                /*if (sub_to_objects.length) Apis.instance().db_api().exec("get_objects", [sub_to_objects]).then( results =>{
+                    results.forEach(result=>{
+                        this.objects_by_id.set( result["id"], result );
                     });
-                });
-
+                }) ;
+                */
                 _this10._updateObject(statistics);
                 var updated_account = _this10._updateObject(account);
                 _this10.fetchRecentHistory(updated_account);
