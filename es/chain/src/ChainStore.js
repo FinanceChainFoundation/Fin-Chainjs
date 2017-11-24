@@ -896,7 +896,7 @@ var ChainStore = function () {
                         sub_to_objects.push(b.id);
                     });
                 });
-                account.fix_balances = account.balances.withMutations(function (map) {
+                account.fix_balances = account.fix_balances.withMutations(function (map) {
                     full_account.balances.forEach(function (b) {
                         map.set(b.asset_type, full_account.balances.lockeds);
                         //sub_to_objects.push(b.id);
