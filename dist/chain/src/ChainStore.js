@@ -949,7 +949,7 @@ var ChainStore = function () {
 
                 if (sub_to_objects.length) _bitsharesjsWs.Apis.instance().db_api().exec("get_objects", [sub_to_objects]).then(function (results) {
                     results.forEach(function (result) {
-                        _this10.objects_by_id.set(result.get("id"), result);
+                        _this10.objects_by_id.set(result["id"], result);
                     });
                 });
 
