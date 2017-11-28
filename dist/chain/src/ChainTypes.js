@@ -25,7 +25,8 @@ ChainTypes.object_type = {
     withdraw_permission: 12,
     vesting_balance: 13,
     worker: 14,
-    balance: 15
+    balance: 15,
+    locked_balance: 16
 };
 
 ChainTypes.impl_object_type = {
@@ -43,8 +44,7 @@ ChainTypes.impl_object_type = {
     chain_property: 11,
     witness_schedule: 12,
     budget_record: 13,
-    locked_balance: 17,
-    asset_lock_data: 18
+    asset_lock_data: 17
 
 };
 

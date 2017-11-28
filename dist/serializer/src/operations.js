@@ -641,7 +641,7 @@ var set_lock_data = exports.set_lock_data = new Serializer("set_lock_data", { fe
 
 var unlock_balance = exports.unlock_balance = new Serializer("unlock_balance", { fee: asset,
     issuer: protocol_id_type("account"),
-    locked: array(unlock_detail),
+    locked: unlock_detail,
     extensions: set(future_extensions) });
 
 var donation_balance = exports.donation_balance = new Serializer("donation_balance", { fee: asset,

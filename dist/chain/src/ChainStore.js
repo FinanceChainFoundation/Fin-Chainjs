@@ -58,7 +58,7 @@ var account_transaction_history_prefix = "2." + parseInt(impl_object_type.accoun
 var asset_dynamic_data_prefix = "2." + parseInt(impl_object_type.asset_dynamic_data, 10) + ".";
 var bitasset_data_prefix = "2." + parseInt(impl_object_type.asset_bitasset_data, 10) + ".";
 var block_summary_prefix = "2." + parseInt(impl_object_type.block_summary, 10) + ".";
-var lock_balance_prefix = "2." + parseInt(impl_object_type.lock_balance, 10) + ".";
+var lock_balance_prefix = "2." + parseInt(object_type.lock_balance, 10) + ".";
 var asset_lock_data_prefix = "2." + parseInt(impl_object_type.asset_lock_data, 10) + ".";
 
 // let vesting_balance_prefix = "1." + vesting_balance_type + ".";
@@ -920,11 +920,17 @@ var ChainStore = function () {
                     });
                 });
 
-                for (var id in full_account.fix_balances) {
-                    full_account.fix_balances[id].forEach(function (fix_balance) {
-                        _this10._updateObject(fix_balance);
+                if (full_account.fix_balances) account.fix_balances = account.fix_balances.withMutations(function (map) {
+                    full_account.fix_balances.forEach(function (b) {
+                        var asset_type = b.asset_type;
+                        b.locked_objects.forEach(function (locked_object) {
+                            this._updateObject(locked_object);
+                            sub_to_objects.push(locked_object.id);
+                        });
+
+                        map.set(b.asset_type, b.locked_objects);
                     });
-                }
+                });
 
                 account.orders = account.orders.withMutations(function (set) {
                     limit_orders.forEach(function (order) {
