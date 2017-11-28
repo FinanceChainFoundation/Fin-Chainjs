@@ -854,6 +854,7 @@ var ChainStore = function () {
             if (_ChainValidation2.default.is_object_id(account_id)) return this.getAccount(account_id, autosubscribe);
         }
 
+        var self = this;
         /// only fetch once every 5 seconds if it wasn't found, or if the subscribe status changed to true
         if (subChanged || !this.fetching_get_full_accounts.has(name_or_id) || Date.now() - this.fetching_get_full_accounts.get(name_or_id) > 5000) {
             this.fetching_get_full_accounts.set(name_or_id, Date.now());
@@ -924,7 +925,7 @@ var ChainStore = function () {
                     full_account.fix_balances.forEach(function (b) {
                         var asset_type = b.asset_type;
                         b.locked_objects.forEach(function (locked_object) {
-                            this._updateObject(locked_object);
+                            self._updateObject(locked_object);
                             sub_to_objects.push(locked_object.id);
                         });
 
