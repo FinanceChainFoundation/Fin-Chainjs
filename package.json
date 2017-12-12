@@ -51,7 +51,7 @@
     "babel-preset-es2015": "^6.18.0",
     "babel-preset-stage-1": "^6.16.0",
     "bigi": "^1.4.2",
-    "bitsharesjs-ws": "git+https://github.com/FinanceChainFoundation/bitsharesjs-ws.git#fe97a2f7a5fce12d1dc80fee01f35762ec3fd0f0",
+    "bitsharesjs-ws": "git+https://github.com/FinanceChainFoundation/bitsharesjs-ws.git#6baf1c9e028ca545620996fa23056ed5973b2069",
     "bs58": "^4.0.1",
     "bytebuffer": "^5.0.1",
     "create-hash": "^1.1.3",
