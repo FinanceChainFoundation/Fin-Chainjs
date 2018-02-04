@@ -26,7 +26,8 @@ ChainTypes.object_type = {
     vesting_balance: 13,
     worker: 14,
     balance: 15,
-    locked_balance: 16
+    locked_balance: 16,
+    asset_presale: 17
 };
 
 ChainTypes.impl_object_type = {
@@ -104,7 +105,10 @@ ChainTypes.operations = {
     lock_balance: 45,
     set_lock_data: 46,
     unlock_balance: 47,
-    donation_balance: 48
+    donation_balance: 48,
+    asset_presale_create: 49,
+    asset_presale_buy: 50,
+    asset_presale_claim: 51
 };
 
 exports.default = ChainTypes;

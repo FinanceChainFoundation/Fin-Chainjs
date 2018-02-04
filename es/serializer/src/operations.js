@@ -171,8 +171,12 @@ export var unlock_balance_operation_fee_parameters = new Serializer("unlock_bala
 
 export var donation_balance_operation_fee_parameters = new Serializer("donation_balance_operation_fee_parameters", { fee: uint64,
     price_per_kbyte: uint32 });
+export var asset_presale_create_operation_fee_parameters = new Serializer("asset_presale_create_operation_fee_parameters", { fee: uint64,
+    price_per_kbyte: uint32 });
+export var asset_presale_buy_operation_fee_parameters = new Serializer("asset_presale_buy_operation_fee_parameters", { fee: uint64 });
+export var asset_presale_claim_operation_fee_parameters = new Serializer("asset_presale_claim_operation_fee_parameters", { fee: uint64 });
 
-var fee_parameters = static_variant([transfer_operation_fee_parameters, limit_order_create_operation_fee_parameters, limit_order_cancel_operation_fee_parameters, call_order_update_operation_fee_parameters, fill_order_operation_fee_parameters, account_create_operation_fee_parameters, account_update_operation_fee_parameters, account_whitelist_operation_fee_parameters, account_upgrade_operation_fee_parameters, account_transfer_operation_fee_parameters, asset_create_operation_fee_parameters, asset_update_operation_fee_parameters, asset_update_bitasset_operation_fee_parameters, asset_update_feed_producers_operation_fee_parameters, asset_issue_operation_fee_parameters, asset_reserve_operation_fee_parameters, asset_fund_fee_pool_operation_fee_parameters, asset_settle_operation_fee_parameters, asset_global_settle_operation_fee_parameters, asset_publish_feed_operation_fee_parameters, witness_create_operation_fee_parameters, witness_update_operation_fee_parameters, proposal_create_operation_fee_parameters, proposal_update_operation_fee_parameters, proposal_delete_operation_fee_parameters, withdraw_permission_create_operation_fee_parameters, withdraw_permission_update_operation_fee_parameters, withdraw_permission_claim_operation_fee_parameters, withdraw_permission_delete_operation_fee_parameters, committee_member_create_operation_fee_parameters, committee_member_update_operation_fee_parameters, committee_member_update_global_parameters_operation_fee_parameters, vesting_balance_create_operation_fee_parameters, vesting_balance_withdraw_operation_fee_parameters, worker_create_operation_fee_parameters, custom_operation_fee_parameters, assert_operation_fee_parameters, balance_claim_operation_fee_parameters, override_transfer_operation_fee_parameters, transfer_to_blind_operation_fee_parameters, blind_transfer_operation_fee_parameters, transfer_from_blind_operation_fee_parameters, asset_settle_cancel_operation_fee_parameters, asset_claim_fees_operation_fee_parameters]);
+var fee_parameters = static_variant([transfer_operation_fee_parameters, limit_order_create_operation_fee_parameters, limit_order_cancel_operation_fee_parameters, call_order_update_operation_fee_parameters, fill_order_operation_fee_parameters, account_create_operation_fee_parameters, account_update_operation_fee_parameters, account_whitelist_operation_fee_parameters, account_upgrade_operation_fee_parameters, account_transfer_operation_fee_parameters, asset_create_operation_fee_parameters, asset_update_operation_fee_parameters, asset_update_bitasset_operation_fee_parameters, asset_update_feed_producers_operation_fee_parameters, asset_issue_operation_fee_parameters, asset_reserve_operation_fee_parameters, asset_fund_fee_pool_operation_fee_parameters, asset_settle_operation_fee_parameters, asset_global_settle_operation_fee_parameters, asset_publish_feed_operation_fee_parameters, witness_create_operation_fee_parameters, witness_update_operation_fee_parameters, proposal_create_operation_fee_parameters, proposal_update_operation_fee_parameters, proposal_delete_operation_fee_parameters, withdraw_permission_create_operation_fee_parameters, withdraw_permission_update_operation_fee_parameters, withdraw_permission_claim_operation_fee_parameters, withdraw_permission_delete_operation_fee_parameters, committee_member_create_operation_fee_parameters, committee_member_update_operation_fee_parameters, committee_member_update_global_parameters_operation_fee_parameters, vesting_balance_create_operation_fee_parameters, vesting_balance_withdraw_operation_fee_parameters, worker_create_operation_fee_parameters, custom_operation_fee_parameters, assert_operation_fee_parameters, balance_claim_operation_fee_parameters, override_transfer_operation_fee_parameters, transfer_to_blind_operation_fee_parameters, blind_transfer_operation_fee_parameters, transfer_from_blind_operation_fee_parameters, asset_settle_cancel_operation_fee_parameters, asset_claim_fees_operation_fee_parameters, asset_presale_create_operation_fee_parameters, asset_presale_buy_operation_fee_parameters, asset_presale_claim_operation_fee_parameters]);
 
 export var fee_schedule = new Serializer("fee_schedule", { parameters: set(fee_parameters),
     scale: uint32 });
@@ -182,9 +186,14 @@ export var void_result = new Serializer("void_result");
 export var asset = new Serializer("asset", { amount: int64,
     asset_id: protocol_id_type("asset") });
 
-export var unlock_detail = new Serializer("unlock_detail", { locked_id: protocol_id_type("locked_balance"),
+export var unlock_detail = new Serializer("unlock_detail", { asset_id: protocol_id_type("locked_balance"),
     expired: bool });
-
+export var support_asset = new Serializer("support_asset", { asset_id: protocol_id_type("asset"),
+    amount: int64,
+    base_price: int64,
+    least: int64,
+    most: int64
+});
 var operation_result = static_variant([void_result, object_id_type, asset]);
 
 export var processed_transaction = new Serializer("processed_transaction", { ref_block_num: uint16,
@@ -634,8 +643,33 @@ export var donation_balance = new Serializer("donation_balance", { fee: asset,
     issuer: protocol_id_type("account"),
     amount: asset,
     extensions: set(future_extensions) });
+export var asset_presale_create = new Serializer("asset_presale_create", { fee: asset,
+    issuer: protocol_id_type("account"),
+    start: time_point_sec,
+    stop: time_point_sec,
+    asset_id: protocol_id_type("asset"),
+    amount: int64,
+    early_bird_part: int64,
+    asset_of_top: protocol_id_type("asset"),
+    soft_top: int64,
+    hard_top: int64,
+    lock_period: uint32,
+    unlock_type: uint8,
+    mode: uint8,
+    early_bird_pecents: map(time_point_sec(uint32)),
+    accepts: array(support_asset),
+    extensions: set(future_extensions) });
+export var asset_presale_buy = new Serializer("asset_presale_buy", { fee: asset,
+    issuer: protocol_id_type("account"),
+    presale: protocol_id_type("asset_presale"),
+    amount: asset,
+    extensions: set(future_extensions) });
+export var asset_presale_claim = new Serializer("asset_presale_claim", { fee: asset,
+    issuer: protocol_id_type("account"),
+    presale: protocol_id_type("asset_presale"),
+    extensions: set(future_extensions) });
 
-operation.st_operations = [transfer, limit_order_create, limit_order_cancel, call_order_update, fill_order, account_create, account_update, account_whitelist, account_upgrade, account_transfer, asset_create, asset_update, asset_update_bitasset, asset_update_feed_producers, asset_issue, asset_reserve, asset_fund_fee_pool, asset_settle, asset_global_settle, asset_publish_feed, witness_create, witness_update, proposal_create, proposal_update, proposal_delete, withdraw_permission_create, withdraw_permission_update, withdraw_permission_claim, withdraw_permission_delete, committee_member_create, committee_member_update, committee_member_update_global_parameters, vesting_balance_create, vesting_balance_withdraw, worker_create, custom, assert, balance_claim, override_transfer, transfer_to_blind, blind_transfer, transfer_from_blind, asset_settle_cancel, asset_claim_fees, op44, lock_balance, set_lock_data, unlock_balance, donation_balance];
+operation.st_operations = [transfer, limit_order_create, limit_order_cancel, call_order_update, fill_order, account_create, account_update, account_whitelist, account_upgrade, account_transfer, asset_create, asset_update, asset_update_bitasset, asset_update_feed_producers, asset_issue, asset_reserve, asset_fund_fee_pool, asset_settle, asset_global_settle, asset_publish_feed, witness_create, witness_update, proposal_create, proposal_update, proposal_delete, withdraw_permission_create, withdraw_permission_update, withdraw_permission_claim, withdraw_permission_delete, committee_member_create, committee_member_update, committee_member_update_global_parameters, vesting_balance_create, vesting_balance_withdraw, worker_create, custom, assert, balance_claim, override_transfer, transfer_to_blind, blind_transfer, transfer_from_blind, asset_settle_cancel, asset_claim_fees, op44, lock_balance, set_lock_data, unlock_balance, donation_balance, asset_presale_create, asset_presale_buy, asset_presale_claim];
 
 export var transaction = new Serializer("transaction", { ref_block_num: uint16,
     ref_block_prefix: uint32,
