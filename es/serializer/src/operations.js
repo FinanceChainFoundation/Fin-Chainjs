@@ -656,7 +656,7 @@ export var asset_presale_create = new Serializer("asset_presale_create", { fee: 
     lock_period: uint32,
     unlock_type: uint8,
     mode: uint8,
-    early_bird_pecents: map(time_point_sec(uint32)),
+    early_bird_pecents: map(time_point_sec, uint32),
     accepts: array(support_asset),
     extensions: set(future_extensions) });
 export var asset_presale_buy = new Serializer("asset_presale_buy", { fee: asset,

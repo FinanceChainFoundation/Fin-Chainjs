@@ -884,7 +884,8 @@ var ChainStore = function () {
                     lifetime_referrer_name = full_account.lifetime_referrer_name,
                     votes = full_account.votes,
                     proposals = full_account.proposals,
-                    fix_balances = full_account.fix_balances;
+                    fix_balances = full_account.fix_balances,
+                    presales = full_account.presales;
 
 
                 _this10.accounts_by_name.set(account.name, account.id);
@@ -907,6 +908,7 @@ var ChainStore = function () {
                     });
                 });
 
+                account.presales = new _immutable2.default.Set();
                 var sub_to_objects = [];
 
                 votes.forEach(function (v) {
@@ -956,6 +958,13 @@ var ChainStore = function () {
                     });
                 });
 
+                account.presales = account.presales.withMutations(function (set) {
+                    presales.forEach(function (p) {
+                        _this10._updateObject(p);
+                        set.add(p);
+                        sub_to_objects.push(p);
+                    });
+                });
                 /*if (sub_to_objects.length) Apis.instance().db_api().exec("get_objects", [sub_to_objects]).then( results =>{
                     results.forEach(result=>{
                         this.objects_by_id.set( result["id"], result );
