@@ -21,6 +21,7 @@ var TransactionBuilder = function () {
 
         // semi-private method bindings
         this._broadcast = _broadcast.bind(this);
+        this.broadcast_method = "broadcast_transaction_with_callback";
     }
 
     /**
@@ -538,6 +539,10 @@ var TransactionBuilder = function () {
         }
     };
 
+    TransactionBuilder.prototype.set_broadcast_method = function set_broadcast_method(method) {
+        this.broadcast_method = method;
+    };
+
     return TransactionBuilder;
 }();
 
@@ -573,7 +578,7 @@ function _broadcast(was_broadcast_callback) {
 
         var tr_object = ops.signed_transaction.toObject(_this5);
         // console.log('... broadcast_transaction_with_callback !!!')
-        Apis.instance().network_api().exec("broadcast_transaction_with_callback", [function (res) {
+        if (broadcast_method == "broadcast_transaction_with_callback") Apis.instance().network_api().exec(_this5.broadcast_method, [function (res) {
             return resolve(res);
         }, tr_object]).then(function () {
             //console.log('... broadcast success, waiting for callback')
@@ -588,7 +593,7 @@ function _broadcast(was_broadcast_callback) {
             }
             reject(new Error(message + "\n" + 'bitshares-crypto ' + ' digest ' + hash.sha256(_this5.tr_buffer).toString('hex') + ' transaction ' + _this5.tr_buffer.toString('hex') + ' ' + JSON.stringify(tr_object)));
             return;
-        });
+        });else Apis.instance().network_api().exec(_this5.broadcast_method, tr_object);
         return;
     });
 }
