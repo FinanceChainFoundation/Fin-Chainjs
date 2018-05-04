@@ -23,7 +23,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 var head_block_time_string, committee_min_review;
 
 var TransactionBuilder = function () {
-    function TransactionBuilder() {
+    function TransactionBuilder(broadcast_method) {
         _classCallCheck(this, TransactionBuilder);
 
         this.ref_block_num = 0;
@@ -35,7 +35,7 @@ var TransactionBuilder = function () {
 
         // semi-private method bindings
         this._broadcast = _broadcast.bind(this);
-        this.broadcast_method = "broadcast_transaction_with_callback";
+        this.broadcast_method = broadcast_method || "broadcast_transaction_with_callback";
     }
 
     /**
@@ -592,7 +592,7 @@ function _broadcast(was_broadcast_callback) {
 
         var tr_object = _serializer.ops.signed_transaction.toObject(_this5);
         // console.log('... broadcast_transaction_with_callback !!!')
-        if (broadcast_method == "broadcast_transaction_with_callback") _bitsharesjsWs.Apis.instance().network_api().exec(_this5.broadcast_method, [function (res) {
+        if (_this5.broadcast_method == "broadcast_transaction_with_callback") _bitsharesjsWs.Apis.instance().network_api().exec(_this5.broadcast_method, [function (res) {
             return resolve(res);
         }, tr_object]).then(function () {
             //console.log('... broadcast success, waiting for callback')
