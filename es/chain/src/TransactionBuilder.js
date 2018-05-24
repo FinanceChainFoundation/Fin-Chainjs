@@ -593,7 +593,7 @@ function _broadcast(was_broadcast_callback) {
             }
             reject(new Error(message + "\n" + 'bitshares-crypto ' + ' digest ' + hash.sha256(_this5.tr_buffer).toString('hex') + ' transaction ' + _this5.tr_buffer.toString('hex') + ' ' + JSON.stringify(tr_object)));
             return;
-        });else Apis.instance().network_api().exec(_this5.broadcast_method, tr_object);
+        });else Apis.instance().network_api().exec(_this5.broadcast_method, [tr_object]);
         return;
     });
 }
