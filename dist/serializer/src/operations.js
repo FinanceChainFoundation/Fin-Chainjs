@@ -206,7 +206,9 @@ var support_asset = exports.support_asset = new Serializer("support_asset", { as
     amount: int64,
     base_price: int64,
     least: int64,
-    most: int64
+    most: int64,
+    soft_top: int64,
+    hard_top: int64
 });
 var operation_result = static_variant([void_result, object_id_type, asset]);
 
