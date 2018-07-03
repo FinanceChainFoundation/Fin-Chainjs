@@ -936,7 +936,7 @@ var ChainStore = function () {
                     });
                 });
 
-                account.presales = account.presales.withMutations(function (set) {
+                if (full_account.presales) account.presales = account.presales.withMutations(function (set) {
                     presales.forEach(function (p) {
                         _this10._updateObject(p);
                         set.add(p);

@@ -108,6 +108,7 @@ var PublicKey = function () {
     PublicKey.fromStringOrThrow = function fromStringOrThrow(public_key) {
         var address_prefix = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : ChainConfig.address_prefix;
 
+        //console.log(public_key,address_prefix)
         var prefix = public_key.slice(0, address_prefix.length);
         assert.equal(address_prefix, prefix, 'Expecting key to begin with ' + address_prefix + ', instead got ' + prefix);
         public_key = public_key.slice(address_prefix.length);
