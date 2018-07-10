@@ -200,8 +200,9 @@ var void_result = exports.void_result = new Serializer("void_result");
 var asset = exports.asset = new Serializer("asset", { amount: int64,
     asset_id: protocol_id_type("asset") });
 
-var unlock_detail = exports.unlock_detail = new Serializer("unlock_detail", { asset_id: protocol_id_type("locked_balance"),
-    expired: bool });
+var unlock_detail = exports.unlock_detail = new Serializer("unlock_detail", { locked_id: protocol_id_type("locked_balance"),
+    expired: bool
+});
 var support_asset = exports.support_asset = new Serializer("support_asset", { asset_id: protocol_id_type("asset"),
     amount: int64,
     base_price: int64,

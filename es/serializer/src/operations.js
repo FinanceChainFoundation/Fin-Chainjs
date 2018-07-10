@@ -186,8 +186,9 @@ export var void_result = new Serializer("void_result");
 export var asset = new Serializer("asset", { amount: int64,
     asset_id: protocol_id_type("asset") });
 
-export var unlock_detail = new Serializer("unlock_detail", { asset_id: protocol_id_type("locked_balance"),
-    expired: bool });
+export var unlock_detail = new Serializer("unlock_detail", { locked_id: protocol_id_type("locked_balance"),
+    expired: bool
+});
 export var support_asset = new Serializer("support_asset", { asset_id: protocol_id_type("asset"),
     amount: int64,
     base_price: int64,
