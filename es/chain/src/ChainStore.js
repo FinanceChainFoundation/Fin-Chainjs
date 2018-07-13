@@ -1325,6 +1325,14 @@ var ChainStore = function () {
                 current = current.set("bitasset", bad);
                 this.objects_by_id.set(object.id, current);
             }
+            var self = this;
+            Apis.instance().db_api().exec("get_asset_presales", [object.id]).then(function (presales_object) {
+
+                //console.log("get_asset_presales",object.id)
+                if (presales_object.length > 0) current = current.set("presales", presales_object);
+                self.objects_by_id.set(object.id, current);
+                //console.log(current.toObject())
+            });
         } else if (object.id.substring(0, asset_dynamic_data_prefix.length) == asset_dynamic_data_prefix) {
             // ASSET DYNAMIC DATA OBJECT
             // let asset_id = asset_prefix + object.id.substring( asset_dynamic_data_prefix.length )
