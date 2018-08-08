@@ -1023,10 +1023,10 @@ var ChainStore = function () {
 
         /// starting at 0 means start at NOW, set this to something other than 0
         /// to skip recent transactions and fetch the tail
-        var start = "1." + op_history + ".0";
+        var stop = "1." + op_history + ".0";
 
         pending_request.promise = new Promise(function (resolve, reject) {
-            Apis.instance().history_api().exec("get_account_history", [account_id, most_recent, limit, start]).then(function (operations) {
+            Apis.instance().history_api().exec("get_account_history", [account_id, stop, limit, most_recent]).then(function (operations) {
                 var current_account = _this11.objects_by_id.get(account_id);
                 if (!current_account) return;
                 var current_history = current_account.get("history");
