@@ -1019,7 +1019,21 @@ var ChainStore = function () {
         var most_recent = "1." + op_history + ".0";
         var history = account.get("history");
 
-        if (history && history.size) most_recent = history.first().get("id");
+        if (history && history.size) {
+            var ids = history.toJS().map(function (i) {
+                return Number(i.id.substr(i.id.lastIndexOf('.') + 1));
+            });
+            ids.sort(function (a, b) {
+                if (a > b) {
+                    return 1;
+                } else if (a < b) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            });
+            most_recent = "1." + op_history + "." + (ids[0] - 1);
+        }
 
         /// starting at 0 means start at NOW, set this to something other than 0
         /// to skip recent transactions and fetch the tail
