@@ -674,19 +674,13 @@ export var asset_presale_claim = new Serializer("asset_presale_claim", { fee: as
 
 operation.st_operations = [transfer, limit_order_create, limit_order_cancel, call_order_update, fill_order, account_create, account_update, account_whitelist, account_upgrade, account_transfer, asset_create, asset_update, asset_update_bitasset, asset_update_feed_producers, asset_issue, asset_reserve, asset_fund_fee_pool, asset_settle, asset_global_settle, asset_publish_feed, witness_create, witness_update, proposal_create, proposal_update, proposal_delete, withdraw_permission_create, withdraw_permission_update, withdraw_permission_claim, withdraw_permission_delete, committee_member_create, committee_member_update, committee_member_update_global_parameters, vesting_balance_create, vesting_balance_withdraw, worker_create, custom, assert, balance_claim, override_transfer, transfer_to_blind, blind_transfer, transfer_from_blind, asset_settle_cancel, asset_claim_fees, op44, lock_balance, set_lock_data, unlock_balance, donation_balance, asset_presale_create, asset_presale_buy, asset_presale_claim];
 
-export var transaction = new Serializer("transaction", {
-    self_region_id: uint32,
-    region_ids: set(uint32),
-    ref_block_num: uint16,
+export var transaction = new Serializer("transaction", { ref_block_num: uint16,
     ref_block_prefix: uint32,
     expiration: time_point_sec,
     operations: array(operation),
     extensions: set(future_extensions) });
 
-export var signed_transaction = new Serializer("signed_transaction", {
-    self_region_id: uint32,
-    region_ids: set(uint32),
-    ref_block_num: uint16,
+export var signed_transaction = new Serializer("signed_transaction", { ref_block_num: uint16,
     ref_block_prefix: uint32,
     expiration: time_point_sec,
     operations: array(operation),
