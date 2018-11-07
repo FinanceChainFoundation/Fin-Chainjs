@@ -648,6 +648,8 @@ export var donation_balance = new Serializer("donation_balance", { fee: asset,
     extensions: set(future_extensions) });
 export var asset_presale_create = new Serializer("asset_presale_create", { fee: asset,
     issuer: protocol_id_type("account"),
+    title: string,
+    description: string,
     start: time_point_sec,
     stop: time_point_sec,
     asset_id: protocol_id_type("asset"),
