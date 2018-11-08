@@ -1,8 +1,8 @@
 "use strict";
 
 exports.__esModule = true;
-exports.stealth_memo_data = exports.signed_transaction = exports.transaction = exports.asset_presale_claim = exports.asset_presale_buy = exports.asset_presale_create = exports.donation_balance = exports.unlock_balance = exports.set_lock_data = exports.lock_balance = exports.op44 = exports.asset_claim_fees = exports.asset_settle_cancel = exports.transfer_from_blind = exports.blind_transfer = exports.blind_input = exports.transfer_to_blind = exports.blind_output = exports.stealth_confirmation = exports.override_transfer = exports.balance_claim = exports.assert = exports.block_id_predicate = exports.asset_symbol_eq_lit_predicate = exports.account_name_eq_lit_predicate = exports.custom = exports.worker_create = exports.burn_worker_initializer = exports.vesting_balance_worker_initializer = exports.refund_worker_initializer = exports.vesting_balance_withdraw = exports.vesting_balance_create = exports.cdd_vesting_policy_initializer = exports.linear_vesting_policy_initializer = exports.committee_member_update_global_parameters = exports.chain_parameters = undefined;
-exports.committee_member_update = exports.committee_member_create = exports.withdraw_permission_delete = exports.withdraw_permission_claim = exports.withdraw_permission_update = exports.withdraw_permission_create = exports.proposal_delete = exports.proposal_update = exports.proposal_create = exports.op_wrapper = exports.witness_update = exports.witness_create = exports.asset_publish_feed = exports.price_feed = exports.asset_global_settle = exports.asset_settle = exports.asset_fund_fee_pool = exports.asset_reserve = exports.asset_issue = exports.asset_update_feed_producers = exports.asset_update_bitasset = exports.asset_update = exports.asset_create = exports.bitasset_options = exports.asset_options = exports.price = exports.account_transfer = exports.account_upgrade = exports.account_whitelist = exports.account_update = exports.account_create = exports.account_options = exports.authority = exports.fill_order = exports.call_order_update = exports.limit_order_cancel = exports.limit_order_create = exports.transfer = exports.memo_data = exports.signed_block_header = exports.block_header = exports.signed_block = exports.processed_transaction = exports.support_asset = exports.unlock_detail = exports.asset = exports.void_result = exports.fee_schedule = exports.asset_presale_claim_operation_fee_parameters = exports.asset_presale_buy_operation_fee_parameters = exports.asset_presale_create_operation_fee_parameters = exports.donation_balance_operation_fee_parameters = exports.unlock_balance_operation_fee_parameters = exports.set_lock_data_operation_fee_parameters = exports.lock_balance_operation_fee_parameters = exports.asset_claim_fees_operation_fee_parameters = exports.asset_settle_cancel_operation_fee_parameters = exports.transfer_from_blind_operation_fee_parameters = exports.blind_transfer_operation_fee_parameters = exports.transfer_to_blind_operation_fee_parameters = exports.override_transfer_operation_fee_parameters = exports.balance_claim_operation_fee_parameters = exports.assert_operation_fee_parameters = exports.custom_operation_fee_parameters = exports.worker_create_operation_fee_parameters = exports.vesting_balance_withdraw_operation_fee_parameters = exports.vesting_balance_create_operation_fee_parameters = exports.committee_member_update_global_parameters_operation_fee_parameters = exports.committee_member_update_operation_fee_parameters = exports.committee_member_create_operation_fee_parameters = exports.withdraw_permission_delete_operation_fee_parameters = exports.withdraw_permission_claim_operation_fee_parameters = exports.withdraw_permission_update_operation_fee_parameters = exports.withdraw_permission_create_operation_fee_parameters = exports.proposal_delete_operation_fee_parameters = exports.proposal_update_operation_fee_parameters = exports.proposal_create_operation_fee_parameters = exports.witness_update_operation_fee_parameters = exports.witness_create_operation_fee_parameters = exports.asset_publish_feed_operation_fee_parameters = exports.asset_global_settle_operation_fee_parameters = exports.asset_settle_operation_fee_parameters = exports.asset_fund_fee_pool_operation_fee_parameters = exports.asset_reserve_operation_fee_parameters = exports.asset_issue_operation_fee_parameters = exports.asset_update_feed_producers_operation_fee_parameters = exports.asset_update_bitasset_operation_fee_parameters = exports.asset_update_operation_fee_parameters = exports.asset_create_operation_fee_parameters = exports.account_transfer_operation_fee_parameters = exports.account_upgrade_operation_fee_parameters = exports.account_whitelist_operation_fee_parameters = exports.account_update_operation_fee_parameters = exports.account_create_operation_fee_parameters = exports.fill_order_operation_fee_parameters = exports.call_order_update_operation_fee_parameters = exports.limit_order_cancel_operation_fee_parameters = exports.limit_order_create_operation_fee_parameters = exports.transfer_operation_fee_parameters = exports.operation = undefined;
+exports.stealth_memo_data = exports.signed_transaction = exports.transaction = exports.asset_presale_claim = exports.asset_presale_buy = exports.asset_presale_create = exports.donation_balance = exports.unlock_balance = exports.set_lock_data = exports.lock_balance = exports.op44 = exports.asset_claim_fees = exports.asset_settle_cancel = exports.transfer_from_blind = exports.blind_transfer = exports.blind_input = exports.transfer_to_blind = exports.blind_output = exports.stealth_confirmation = exports.override_transfer = exports.balance_claim = exports.assert = exports.block_id_predicate = exports.asset_symbol_eq_lit_predicate = exports.account_name_eq_lit_predicate = exports.custom = exports.worker_create = exports.burn_worker_initializer = exports.vesting_balance_worker_initializer = exports.refund_worker_initializer = exports.vesting_balance_withdraw = exports.vesting_balance_create = exports.cdd_vesting_policy_initializer = exports.linear_vesting_policy_initializer = exports.committee_member_update_global_parameters = exports.chain_parameters = exports.committee_member_update = undefined;
+exports.committee_member_create = exports.withdraw_permission_delete = exports.withdraw_permission_claim = exports.withdraw_permission_update = exports.withdraw_permission_create = exports.proposal_delete = exports.proposal_update = exports.proposal_create = exports.op_wrapper = exports.witness_update = exports.witness_create = exports.asset_publish_feed = exports.price_feed = exports.asset_global_settle = exports.asset_settle = exports.asset_fund_fee_pool = exports.asset_reserve = exports.asset_issue = exports.early_bird_pecent = exports.asset_update_feed_producers = exports.asset_update_bitasset = exports.asset_update = exports.asset_create = exports.bitasset_options = exports.asset_options = exports.account_transfer = exports.account_upgrade = exports.account_whitelist = exports.account_update = exports.account_create = exports.account_options = exports.authority = exports.fill_order = exports.call_order_update = exports.limit_order_cancel = exports.limit_order_create = exports.transfer = exports.memo_data = exports.signed_block_header = exports.block_header = exports.signed_block = exports.processed_transaction = exports.support_asset = exports.price = exports.unlock_detail = exports.asset = exports.void_result = exports.fee_schedule = exports.asset_presale_claim_operation_fee_parameters = exports.asset_presale_buy_operation_fee_parameters = exports.asset_presale_create_operation_fee_parameters = exports.donation_balance_operation_fee_parameters = exports.unlock_balance_operation_fee_parameters = exports.set_lock_data_operation_fee_parameters = exports.lock_balance_operation_fee_parameters = exports.asset_claim_fees_operation_fee_parameters = exports.asset_settle_cancel_operation_fee_parameters = exports.transfer_from_blind_operation_fee_parameters = exports.blind_transfer_operation_fee_parameters = exports.transfer_to_blind_operation_fee_parameters = exports.override_transfer_operation_fee_parameters = exports.balance_claim_operation_fee_parameters = exports.assert_operation_fee_parameters = exports.custom_operation_fee_parameters = exports.worker_create_operation_fee_parameters = exports.vesting_balance_withdraw_operation_fee_parameters = exports.vesting_balance_create_operation_fee_parameters = exports.committee_member_update_global_parameters_operation_fee_parameters = exports.committee_member_update_operation_fee_parameters = exports.committee_member_create_operation_fee_parameters = exports.withdraw_permission_delete_operation_fee_parameters = exports.withdraw_permission_claim_operation_fee_parameters = exports.withdraw_permission_update_operation_fee_parameters = exports.withdraw_permission_create_operation_fee_parameters = exports.proposal_delete_operation_fee_parameters = exports.proposal_update_operation_fee_parameters = exports.proposal_create_operation_fee_parameters = exports.witness_update_operation_fee_parameters = exports.witness_create_operation_fee_parameters = exports.asset_publish_feed_operation_fee_parameters = exports.asset_global_settle_operation_fee_parameters = exports.asset_settle_operation_fee_parameters = exports.asset_fund_fee_pool_operation_fee_parameters = exports.asset_reserve_operation_fee_parameters = exports.asset_issue_operation_fee_parameters = exports.asset_update_feed_producers_operation_fee_parameters = exports.asset_update_bitasset_operation_fee_parameters = exports.asset_update_operation_fee_parameters = exports.asset_create_operation_fee_parameters = exports.account_transfer_operation_fee_parameters = exports.account_upgrade_operation_fee_parameters = exports.account_whitelist_operation_fee_parameters = exports.account_update_operation_fee_parameters = exports.account_create_operation_fee_parameters = exports.fill_order_operation_fee_parameters = exports.call_order_update_operation_fee_parameters = exports.limit_order_cancel_operation_fee_parameters = exports.limit_order_create_operation_fee_parameters = exports.transfer_operation_fee_parameters = exports.operation = undefined;
 
 var _types = require("./types");
 
@@ -200,16 +200,18 @@ var void_result = exports.void_result = new Serializer("void_result");
 var asset = exports.asset = new Serializer("asset", { amount: int64,
     asset_id: protocol_id_type("asset") });
 
-var unlock_detail = exports.unlock_detail = new Serializer("unlock_detail", { locked_id: protocol_id_type("locked_balance"),
+var unlock_detail = exports.unlock_detail = new Serializer("unlock_detail", { asset_id: protocol_id_type("locked_balance"),
     expired: bool
 });
+
+var price = exports.price = new Serializer("price", { base: asset,
+    quote: asset });
+
 var support_asset = exports.support_asset = new Serializer("support_asset", { asset_id: protocol_id_type("asset"),
     amount: int64,
-    base_price: int64,
+    base_price: price,
     least: int64,
-    most: int64,
-    soft_top: int64,
-    hard_top: int64
+    most: int64
 });
 var operation_result = static_variant([void_result, object_id_type, asset]);
 
@@ -324,9 +326,6 @@ var account_transfer = exports.account_transfer = new Serializer("account_transf
     new_owner: protocol_id_type("account"),
     extensions: set(future_extensions) });
 
-var price = exports.price = new Serializer("price", { base: asset,
-    quote: asset });
-
 var asset_options = exports.asset_options = new Serializer("asset_options", { max_supply: int64,
     market_fee_percent: uint16,
     max_market_fee: int64,
@@ -375,6 +374,9 @@ var asset_update_feed_producers = exports.asset_update_feed_producers = new Seri
     asset_to_update: protocol_id_type("asset"),
     new_feed_producers: set(protocol_id_type("account")),
     extensions: set(future_extensions) });
+
+var early_bird_pecent = exports.early_bird_pecent = new Serializer("early_bird_pecent", { time: time_point_sec,
+    percent: uint32 });
 
 var asset_issue = exports.asset_issue = new Serializer("asset_issue", { fee: asset,
     issuer: protocol_id_type("account"),
@@ -675,7 +677,7 @@ var asset_presale_create = exports.asset_presale_create = new Serializer("asset_
     lock_period: uint32,
     unlock_type: uint8,
     mode: uint8,
-    early_bird_pecents: map(time_point_sec, uint32),
+    early_bird_pecents: array(early_bird_pecent),
     accepts: array(support_asset),
     extensions: set(future_extensions) });
 var asset_presale_buy = exports.asset_presale_buy = new Serializer("asset_presale_buy", { fee: asset,
@@ -691,8 +693,6 @@ var asset_presale_claim = exports.asset_presale_claim = new Serializer("asset_pr
 operation.st_operations = [transfer, limit_order_create, limit_order_cancel, call_order_update, fill_order, account_create, account_update, account_whitelist, account_upgrade, account_transfer, asset_create, asset_update, asset_update_bitasset, asset_update_feed_producers, asset_issue, asset_reserve, asset_fund_fee_pool, asset_settle, asset_global_settle, asset_publish_feed, witness_create, witness_update, proposal_create, proposal_update, proposal_delete, withdraw_permission_create, withdraw_permission_update, withdraw_permission_claim, withdraw_permission_delete, committee_member_create, committee_member_update, committee_member_update_global_parameters, vesting_balance_create, vesting_balance_withdraw, worker_create, custom, assert, balance_claim, override_transfer, transfer_to_blind, blind_transfer, transfer_from_blind, asset_settle_cancel, asset_claim_fees, op44, lock_balance, set_lock_data, unlock_balance, donation_balance, asset_presale_create, asset_presale_buy, asset_presale_claim];
 
 var transaction = exports.transaction = new Serializer("transaction", {
-    self_region_id: uint32,
-    region_ids: set(uint32),
     ref_block_num: uint16,
     ref_block_prefix: uint32,
     expiration: time_point_sec,
@@ -700,8 +700,6 @@ var transaction = exports.transaction = new Serializer("transaction", {
     extensions: set(future_extensions) });
 
 var signed_transaction = exports.signed_transaction = new Serializer("signed_transaction", {
-    self_region_id: uint32,
-    region_ids: set(uint32),
     ref_block_num: uint16,
     ref_block_prefix: uint32,
     expiration: time_point_sec,

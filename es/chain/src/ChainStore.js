@@ -936,7 +936,7 @@ var ChainStore = function () {
                     });
                 });
 
-                if (full_account.presales) account.presales = account.presales.withMutations(function (set) {
+                account.presales = account.presales.withMutations(function (set) {
                     presales.forEach(function (p) {
                         _this10._updateObject(p);
                         set.add(p);
@@ -1019,28 +1019,14 @@ var ChainStore = function () {
         var most_recent = "1." + op_history + ".0";
         var history = account.get("history");
 
-        if (history && history.size) {
-            var ids = history.toJS().map(function (i) {
-                return Number(i.id.substr(i.id.lastIndexOf('.') + 1));
-            });
-            ids.sort(function (a, b) {
-                if (a > b) {
-                    return 1;
-                } else if (a < b) {
-                    return -1;
-                } else {
-                    return 0;
-                }
-            });
-            most_recent = "1." + op_history + "." + (ids[0] - 1);
-        }
+        if (history && history.size) most_recent = history.first().get("id");
 
         /// starting at 0 means start at NOW, set this to something other than 0
         /// to skip recent transactions and fetch the tail
-        var stop = "1." + op_history + ".0";
+        var start = "1." + op_history + ".0";
 
         pending_request.promise = new Promise(function (resolve, reject) {
-            Apis.instance().history_api().exec("get_account_history", [account_id, stop, limit, most_recent]).then(function (operations) {
+            Apis.instance().history_api().exec("get_account_history", [account_id, most_recent, limit, start]).then(function (operations) {
                 var current_account = _this11.objects_by_id.get(account_id);
                 if (!current_account) return;
                 var current_history = current_account.get("history");
@@ -1339,14 +1325,6 @@ var ChainStore = function () {
                 current = current.set("bitasset", bad);
                 this.objects_by_id.set(object.id, current);
             }
-            var self = this;
-            Apis.instance().db_api().exec("get_asset_presales", [object.id]).then(function (presales_object) {
-
-                //console.log("get_asset_presales",object.id)
-                if (presales_object.length > 0) current = current.set("presales", presales_object);
-                self.objects_by_id.set(object.id, current);
-                //console.log(current.toObject())
-            });
         } else if (object.id.substring(0, asset_dynamic_data_prefix.length) == asset_dynamic_data_prefix) {
             // ASSET DYNAMIC DATA OBJECT
             // let asset_id = asset_prefix + object.id.substring( asset_dynamic_data_prefix.length )
