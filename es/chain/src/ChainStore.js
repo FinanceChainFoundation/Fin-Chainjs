@@ -997,7 +997,7 @@ var ChainStore = function () {
     ChainStore.prototype.fetchRecentHistory = function fetchRecentHistory(account) {
         var _this11 = this;
 
-        var limit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 100;
+        var limit = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 20;
 
         // console.log( "get account history: ", account )
         /// TODO: make sure we do not submit a query if there is already one
